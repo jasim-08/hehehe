@@ -1,0 +1,44 @@
+def fibonacci(n):
+    a, b = 0, 1
+    series = []
+
+    for i in range(n):
+        series.append(a)
+        a, b = b, a + b
+
+    return series
+
+
+def save_to_file(data):
+    with open("fibonacci_output.txt", "w") as file:
+        for num in data:
+            file.write(str(num) + "\n")
+    print("\n✔ Output saved to fibonacci_output.txt")
+
+
+def main():
+    print("------ Fibonacci Series Generator ------")
+
+    try:
+        n = int(input("Enter number of terms: "))
+
+        if n <= 0:
+            print("Please enter a positive number.")
+            return
+
+        result = fibonacci(n)
+
+        print("\nFibonacci Series:")
+        print(result)
+
+        choice = input("\nDo you want to save output to file? (y/n): ")
+
+        if choice.lower() == 'y':
+            save_to_file(result)
+
+    except ValueError:
+        print("Invalid input! Please enter a number.")
+
+
+if __name__ == "__main__":
+    main()
